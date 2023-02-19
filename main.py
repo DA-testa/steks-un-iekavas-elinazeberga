@@ -13,18 +13,35 @@ def find_mismatch(text):
     opening_brackets_stack = []
     for i, next in enumerate(text):
         if next in "([{":
-            # Process opening bracket, write your code here
+            opening_brackets_stack.append(next)
             pass
 
         if next in ")]}":
-            # Process closing bracket, write your code here
+            if not opening_brackets_stack:
+                return 1
+            else:
+                if are_matching(opening_brackets_stack.pop(), next):
+                    if i+1 == len(next):
+                        return "Success"
+                    else:
+                        pass
+                else:
+                    return i+1
             pass
 
 
 def main():
-    text = input()
-    mismatch = find_mismatch(text)
-    # Printing answer, write your code here
+    izvele = input()
+    if "I" in izvele:
+        text = input()   
+        mismatch = find_mismatch(text)
+
+        if not mismatch:
+            print("Success")
+        else:
+            print(mismatch)
+    else:
+        print("Error")
 
 
 if __name__ == "__main__":
